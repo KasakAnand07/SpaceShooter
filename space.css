@@ -1,0 +1,33 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #111;
+    color: white;
+}
+
+h1 {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    margin: 10px 0;
+}
+
+#board {
+    background-color: black;
+    width: 100vw;
+    height: 80vh;
+    max-width: 600px;
+    max-height: 600px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+@media (orientation: landscape) {
+    #board {
+        width: 80vw;
+        height: 100vh;
+    }
+}
