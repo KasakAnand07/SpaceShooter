@@ -44,27 +44,36 @@ let bulletVelocityY = -10;
 let score = 0;
 let gameOver = false;
 
-window.onload = function() {
+window.onload = function () {
     board = document.getElementById("board");
     board.width = boardWidth;
     board.height = boardHeight;
-    context = board.getContext("2d"); 
+    context = board.getContext("2d");
 
-    //load images
+    // Ship setup
+    shipWidth = tileSize * 2;
+    shipHeight = tileSize;
+    shipX = tileSize * columns / 2 - tileSize;
+    shipY = tileSize * rows - tileSize * 2;
+    ship = { x: shipX, y: shipY, width: shipWidth, height: shipHeight };
+
+    // Load ship image
     shipImg = new Image();
     shipImg.src = "image/ship.png";
-    shipImg.onload = function() {
-        context.drawImage(shipImg, ship.x, ship.y, ship.width, ship.height);
-    }
+    shipImg.onload = () => context.drawImage(shipImg, ship.x, ship.y, ship.width, ship.height);
 
+    // Load alien image
     alienImg = new Image();
     alienImg.src = "image/alien.png";
-    createAliens();
 
+    // Create aliens and start game loop
+    createAliens();
     requestAnimationFrame(update);
+
+    // Event listeners for controls
     document.addEventListener("keydown", moveShip);
     document.addEventListener("keyup", shoot);
-}
+};
 
 function update() {
     requestAnimationFrame(update);
